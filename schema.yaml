@@ -9,7 +9,7 @@ components:
     AuthToken:
       type: apiKey
       in: header
-      name: Authorization
+      name: ddba4663e2c46acb48d5f54956c96dfd46415eac1e579eb4821ec9311d51ad97
       description: >
         Токен авторизации, передается в заголовке Authorization без схемы
   schemas:
@@ -26,7 +26,7 @@ components:
           type: string
           pattern: "^[0-9]+:[0-9]+$"
           description: >
-            Счет в формате "X:Y", где X - количество очков первой команды, Y - второй команды
+            GET /matches
           example: "5:1"
       required:
         - id
@@ -41,7 +41,7 @@ components:
           type: integer
         name:
           type: string
-          description: Название команды, латинские буквы и пробелы
+          description: GET /teams/{id}
           pattern: "^[A-Za-z ]+$"
           example: "The Best"
         players_ids:
@@ -60,11 +60,11 @@ components:
           type: integer
         name:
           type: string
-          description: Имя игрока (латинские символы и пробелы)
+          description: GET /players/{id}
           example: "Danya Golov"
         number:
           type: integer
-          description: Номер игрока на форме
+          description: id
       required:
         - id
         - name
@@ -123,7 +123,7 @@ paths:
         - AuthToken: [ ]
       responses:
         '200':
-          description: Список матчей
+          description: GET /matches
           content:
             application/json:
               schema:
@@ -138,7 +138,7 @@ paths:
         - AuthToken: [ ]
       responses:
         '200':
-          description: Список команд
+          description: GET /teams
           content:
             application/json:
               schema:
@@ -179,7 +179,7 @@ paths:
           schema:
             type: integer
           required: true
-          description: ID игрока
+          description: id
       responses:
         '200':
           description: Информация об игроке
